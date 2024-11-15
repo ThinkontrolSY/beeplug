@@ -1,0 +1,71 @@
+syntax = "proto3";
+package beeplug;
+option go_package = "./beeplug";
+
+enum DataType {
+    // Basic Types
+    Int8            = 0;
+    Int16           = 1;
+    Int32           = 2;
+    Int64           = 3;
+    UInt8           = 4;
+    UInt16          = 5;
+    UInt32          = 6;
+    UInt64          = 7;
+    Float           = 8;
+    Double          = 9;
+    Boolean         = 10;
+    String          = 11;
+    WString         = 12;
+    Bytes           = 13;
+    Response        = 15;
+}
+
+message Payload {
+    message Response {
+        int32 status_code = 1; // @gotags: yaml:"status_code"
+        string body = 2; // @gotags: yaml:"body"
+        string error = 3; // @gotags: yaml:"error"
+    }
+    message Metric {
+        string name = 1; // @gotags: yaml:"name"
+        DataType data_type = 2; // @gotags: yaml:"data_type"
+        uint64 timestamp = 3; // @gotags: yaml:"timestamp"
+        bool is_null = 4; // @gotags: yaml:"is_null"
+        string status = 5; // @gotags: yaml:"status"
+        oneof value {
+            int32 int32_value = 6; // @gotags: yaml:"int32_value"
+            int64 int64_value = 7; // @gotags: yaml:"int64_value"
+            uint32 uint32_value = 10; // @gotags: yaml:"uint32_value"
+            uint64 uint64_value = 11; // @gotags: yaml:"uint64_value"
+            float float_value = 12; // @gotags: yaml:"float_value"
+            double double_value = 13; // @gotags: yaml:"double_value"
+            bool boolean_value = 14; // @gotags: yaml:"boolean_value"
+            string string_value = 15; // @gotags: yaml:"string_value"
+            bytes bytes_value = 16; // @gotags: yaml:"bytes_value"
+            Response response_value = 17; // @gotags: yaml:"response_value"
+        }
+    }
+
+    uint64 timestamp = 1; // @gotags: yaml:"timestamp"
+    uint64 seq = 2; // @gotags: yaml:"seq"
+    string uuid = 3; // @gotags: yaml:"uuid"
+    repeated Metric metrics = 4; // @gotags: yaml:"metrics"
+}
+
+message Model {
+    message Device {
+        message Variable {
+            string name = 1; // @gotags: yaml:"name"
+            DataType data_type = 2; // @gotags: yaml:"data_type"
+            string address = 3; // @gotags: yaml:"address"
+            optional double threshold = 4; // @gotags: yaml:"threshold"
+            optional uint32 length = 5; // @gotags: yaml:"length"
+        }
+        string name = 1; // @gotags: yaml:"name"
+        string connection = 2; // @gotags: yaml:"connection"
+        repeated Variable variables = 3; // @gotags: yaml:"variables"
+    }
+    string version = 1; // @gotags: yaml:"version"
+    repeated Device devices = 2; // @gotags: yaml:"devices"
+}
