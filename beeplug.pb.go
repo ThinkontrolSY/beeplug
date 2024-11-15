@@ -177,17 +177,17 @@ func (x *Payload) GetMetrics() []*Payload_Metric {
 	return nil
 }
 
-type Model struct {
+type EdgeModel struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Version string          `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty" yaml:"version"` // @gotags: yaml:"version"
-	Devices []*Model_Device `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices,omitempty" yaml:"devices"` // @gotags: yaml:"devices"
+	Version string              `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty" yaml:"version"` // @gotags: yaml:"version"
+	Devices []*EdgeModel_Device `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices,omitempty" yaml:"devices"` // @gotags: yaml:"devices"
 }
 
-func (x *Model) Reset() {
-	*x = Model{}
+func (x *EdgeModel) Reset() {
+	*x = EdgeModel{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_beeplug_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -195,13 +195,13 @@ func (x *Model) Reset() {
 	}
 }
 
-func (x *Model) String() string {
+func (x *EdgeModel) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Model) ProtoMessage() {}
+func (*EdgeModel) ProtoMessage() {}
 
-func (x *Model) ProtoReflect() protoreflect.Message {
+func (x *EdgeModel) ProtoReflect() protoreflect.Message {
 	mi := &file_beeplug_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -213,21 +213,76 @@ func (x *Model) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Model.ProtoReflect.Descriptor instead.
-func (*Model) Descriptor() ([]byte, []int) {
+// Deprecated: Use EdgeModel.ProtoReflect.Descriptor instead.
+func (*EdgeModel) Descriptor() ([]byte, []int) {
 	return file_beeplug_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Model) GetVersion() string {
+func (x *EdgeModel) GetVersion() string {
 	if x != nil {
 		return x.Version
 	}
 	return ""
 }
 
-func (x *Model) GetDevices() []*Model_Device {
+func (x *EdgeModel) GetDevices() []*EdgeModel_Device {
 	if x != nil {
 		return x.Devices
+	}
+	return nil
+}
+
+type EntityModel struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Version string               `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty" yaml:"version"` // @gotags: yaml:"version"
+	Fields  []*EntityModel_Field `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty" yaml:"fields"`   // @gotags: yaml:"fields"
+}
+
+func (x *EntityModel) Reset() {
+	*x = EntityModel{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_beeplug_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EntityModel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityModel) ProtoMessage() {}
+
+func (x *EntityModel) ProtoReflect() protoreflect.Message {
+	mi := &file_beeplug_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityModel.ProtoReflect.Descriptor instead.
+func (*EntityModel) Descriptor() ([]byte, []int) {
+	return file_beeplug_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *EntityModel) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *EntityModel) GetFields() []*EntityModel_Field {
+	if x != nil {
+		return x.Fields
 	}
 	return nil
 }
@@ -245,7 +300,7 @@ type Payload_Response struct {
 func (x *Payload_Response) Reset() {
 	*x = Payload_Response{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_beeplug_proto_msgTypes[2]
+		mi := &file_beeplug_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -258,7 +313,7 @@ func (x *Payload_Response) String() string {
 func (*Payload_Response) ProtoMessage() {}
 
 func (x *Payload_Response) ProtoReflect() protoreflect.Message {
-	mi := &file_beeplug_proto_msgTypes[2]
+	mi := &file_beeplug_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -323,7 +378,7 @@ type Payload_Metric struct {
 func (x *Payload_Metric) Reset() {
 	*x = Payload_Metric{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_beeplug_proto_msgTypes[3]
+		mi := &file_beeplug_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -336,7 +391,7 @@ func (x *Payload_Metric) String() string {
 func (*Payload_Metric) ProtoMessage() {}
 
 func (x *Payload_Metric) ProtoReflect() protoreflect.Message {
-	mi := &file_beeplug_proto_msgTypes[3]
+	mi := &file_beeplug_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -528,83 +583,18 @@ func (*Payload_Metric_BytesValue) isPayload_Metric_Value() {}
 
 func (*Payload_Metric_ResponseValue) isPayload_Metric_Value() {}
 
-type Model_Device struct {
+type EdgeModel_Device struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name       string                   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" yaml:"name"`             // @gotags: yaml:"name"
-	Connection string                   `protobuf:"bytes,2,opt,name=connection,proto3" json:"connection,omitempty" yaml:"connection"` // @gotags: yaml:"connection"
-	Variables  []*Model_Device_Variable `protobuf:"bytes,3,rep,name=variables,proto3" json:"variables,omitempty" yaml:"variables"`   // @gotags: yaml:"variables"
+	Name       string                       `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" yaml:"name"`             // @gotags: yaml:"name"
+	Connection string                       `protobuf:"bytes,2,opt,name=connection,proto3" json:"connection,omitempty" yaml:"connection"` // @gotags: yaml:"connection"
+	Variables  []*EdgeModel_Device_Variable `protobuf:"bytes,3,rep,name=variables,proto3" json:"variables,omitempty" yaml:"variables"`   // @gotags: yaml:"variables"
 }
 
-func (x *Model_Device) Reset() {
-	*x = Model_Device{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_beeplug_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Model_Device) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Model_Device) ProtoMessage() {}
-
-func (x *Model_Device) ProtoReflect() protoreflect.Message {
-	mi := &file_beeplug_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Model_Device.ProtoReflect.Descriptor instead.
-func (*Model_Device) Descriptor() ([]byte, []int) {
-	return file_beeplug_proto_rawDescGZIP(), []int{1, 0}
-}
-
-func (x *Model_Device) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *Model_Device) GetConnection() string {
-	if x != nil {
-		return x.Connection
-	}
-	return ""
-}
-
-func (x *Model_Device) GetVariables() []*Model_Device_Variable {
-	if x != nil {
-		return x.Variables
-	}
-	return nil
-}
-
-type Model_Device_Variable struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Name      string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" yaml:"name"`                                                // @gotags: yaml:"name"
-	DataType  DataType `protobuf:"varint,2,opt,name=data_type,json=dataType,proto3,enum=beeplug.DataType" json:"data_type,omitempty" yaml:"data_type"` // @gotags: yaml:"data_type"
-	Address   string   `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty" yaml:"address"`                                          // @gotags: yaml:"address"
-	Threshold *float64 `protobuf:"fixed64,4,opt,name=threshold,proto3,oneof" json:"threshold,omitempty" yaml:"threshold"`                              // @gotags: yaml:"threshold"
-	Length    *uint32  `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty" yaml:"length"`                                     // @gotags: yaml:"length"
-}
-
-func (x *Model_Device_Variable) Reset() {
-	*x = Model_Device_Variable{}
+func (x *EdgeModel_Device) Reset() {
+	*x = EdgeModel_Device{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_beeplug_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -612,13 +602,13 @@ func (x *Model_Device_Variable) Reset() {
 	}
 }
 
-func (x *Model_Device_Variable) String() string {
+func (x *EdgeModel_Device) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Model_Device_Variable) ProtoMessage() {}
+func (*EdgeModel_Device) ProtoMessage() {}
 
-func (x *Model_Device_Variable) ProtoReflect() protoreflect.Message {
+func (x *EdgeModel_Device) ProtoReflect() protoreflect.Message {
 	mi := &file_beeplug_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -630,44 +620,243 @@ func (x *Model_Device_Variable) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Model_Device_Variable.ProtoReflect.Descriptor instead.
-func (*Model_Device_Variable) Descriptor() ([]byte, []int) {
-	return file_beeplug_proto_rawDescGZIP(), []int{1, 0, 0}
+// Deprecated: Use EdgeModel_Device.ProtoReflect.Descriptor instead.
+func (*EdgeModel_Device) Descriptor() ([]byte, []int) {
+	return file_beeplug_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *Model_Device_Variable) GetName() string {
+func (x *EdgeModel_Device) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *Model_Device_Variable) GetDataType() DataType {
+func (x *EdgeModel_Device) GetConnection() string {
+	if x != nil {
+		return x.Connection
+	}
+	return ""
+}
+
+func (x *EdgeModel_Device) GetVariables() []*EdgeModel_Device_Variable {
+	if x != nil {
+		return x.Variables
+	}
+	return nil
+}
+
+type EdgeModel_Device_Variable struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name      string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" yaml:"name"`                                                // @gotags: yaml:"name"
+	DataType  DataType `protobuf:"varint,2,opt,name=data_type,json=dataType,proto3,enum=beeplug.DataType" json:"data_type,omitempty" yaml:"data_type"` // @gotags: yaml:"data_type"
+	Address   string   `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty" yaml:"address"`                                          // @gotags: yaml:"address"
+	Threshold *float64 `protobuf:"fixed64,4,opt,name=threshold,proto3,oneof" json:"threshold,omitempty" yaml:"threshold"`                              // @gotags: yaml:"threshold"
+	Length    *uint32  `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty" yaml:"length"`                                     // @gotags: yaml:"length"
+}
+
+func (x *EdgeModel_Device_Variable) Reset() {
+	*x = EdgeModel_Device_Variable{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_beeplug_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EdgeModel_Device_Variable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EdgeModel_Device_Variable) ProtoMessage() {}
+
+func (x *EdgeModel_Device_Variable) ProtoReflect() protoreflect.Message {
+	mi := &file_beeplug_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EdgeModel_Device_Variable.ProtoReflect.Descriptor instead.
+func (*EdgeModel_Device_Variable) Descriptor() ([]byte, []int) {
+	return file_beeplug_proto_rawDescGZIP(), []int{1, 0, 0}
+}
+
+func (x *EdgeModel_Device_Variable) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *EdgeModel_Device_Variable) GetDataType() DataType {
 	if x != nil {
 		return x.DataType
 	}
 	return DataType_Int8
 }
 
-func (x *Model_Device_Variable) GetAddress() string {
+func (x *EdgeModel_Device_Variable) GetAddress() string {
 	if x != nil {
 		return x.Address
 	}
 	return ""
 }
 
-func (x *Model_Device_Variable) GetThreshold() float64 {
+func (x *EdgeModel_Device_Variable) GetThreshold() float64 {
 	if x != nil && x.Threshold != nil {
 		return *x.Threshold
 	}
 	return 0
 }
 
-func (x *Model_Device_Variable) GetLength() uint32 {
+func (x *EdgeModel_Device_Variable) GetLength() uint32 {
 	if x != nil && x.Length != nil {
 		return *x.Length
 	}
 	return 0
+}
+
+type EntityModel_Field struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name          string                           `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" yaml:"name"`                                              // @gotags: yaml:"name"
+	ControlModule *string                          `protobuf:"bytes,2,opt,name=control_module,json=controlModule,proto3,oneof" json:"control_module,omitempty" yaml:"control_module"` // @gotags: yaml:"control_module"
+	Expression    string                           `protobuf:"bytes,3,opt,name=expression,proto3" json:"expression,omitempty" yaml:"expression"`                                  // @gotags: yaml:"expression"
+	IsTransient   bool                             `protobuf:"varint,4,opt,name=is_transient,json=isTransient,proto3" json:"is_transient,omitempty" yaml:"is_transient"`            // @gotags: yaml:"is_transient"
+	SetFunctions  []*EntityModel_Field_SetFunction `protobuf:"bytes,5,rep,name=set_functions,json=setFunctions,proto3" json:"set_functions,omitempty" yaml:"set_functions"`          // @gotags: yaml:"set_functions"
+}
+
+func (x *EntityModel_Field) Reset() {
+	*x = EntityModel_Field{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_beeplug_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EntityModel_Field) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityModel_Field) ProtoMessage() {}
+
+func (x *EntityModel_Field) ProtoReflect() protoreflect.Message {
+	mi := &file_beeplug_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityModel_Field.ProtoReflect.Descriptor instead.
+func (*EntityModel_Field) Descriptor() ([]byte, []int) {
+	return file_beeplug_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *EntityModel_Field) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *EntityModel_Field) GetControlModule() string {
+	if x != nil && x.ControlModule != nil {
+		return *x.ControlModule
+	}
+	return ""
+}
+
+func (x *EntityModel_Field) GetExpression() string {
+	if x != nil {
+		return x.Expression
+	}
+	return ""
+}
+
+func (x *EntityModel_Field) GetIsTransient() bool {
+	if x != nil {
+		return x.IsTransient
+	}
+	return false
+}
+
+func (x *EntityModel_Field) GetSetFunctions() []*EntityModel_Field_SetFunction {
+	if x != nil {
+		return x.SetFunctions
+	}
+	return nil
+}
+
+type EntityModel_Field_SetFunction struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Variable   string `protobuf:"bytes,1,opt,name=variable,proto3" json:"variable,omitempty" yaml:"variable"`     // @gotags: yaml:"variable"
+	Expression string `protobuf:"bytes,2,opt,name=expression,proto3" json:"expression,omitempty" yaml:"expression"` // @gotags: yaml:"expression"
+}
+
+func (x *EntityModel_Field_SetFunction) Reset() {
+	*x = EntityModel_Field_SetFunction{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_beeplug_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EntityModel_Field_SetFunction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityModel_Field_SetFunction) ProtoMessage() {}
+
+func (x *EntityModel_Field_SetFunction) ProtoReflect() protoreflect.Message {
+	mi := &file_beeplug_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityModel_Field_SetFunction.ProtoReflect.Descriptor instead.
+func (*EntityModel_Field_SetFunction) Descriptor() ([]byte, []int) {
+	return file_beeplug_proto_rawDescGZIP(), []int{2, 0, 0}
+}
+
+func (x *EntityModel_Field_SetFunction) GetVariable() string {
+	if x != nil {
+		return x.Variable
+	}
+	return ""
+}
+
+func (x *EntityModel_Field_SetFunction) GetExpression() string {
+	if x != nil {
+		return x.Expression
+	}
+	return ""
 }
 
 var File_beeplug_proto protoreflect.FileDescriptor
@@ -723,45 +912,71 @@ var file_beeplug_proto_rawDesc = []byte{
 	0x19, 0x2e, 0x62, 0x65, 0x65, 0x70, 0x6c, 0x75, 0x67, 0x2e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61,
 	0x64, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x0d, 0x72, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x22, 0x93, 0x03, 0x0a, 0x05, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x18,
-	0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x2f, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x69,
-	0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x65, 0x65, 0x70,
-	0x6c, 0x75, 0x67, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65,
-	0x52, 0x07, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x1a, 0xbe, 0x02, 0x0a, 0x06, 0x44, 0x65,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a, 0x09, 0x76, 0x61, 0x72, 0x69,
-	0x61, 0x62, 0x6c, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x62, 0x65,
-	0x65, 0x70, 0x6c, 0x75, 0x67, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x44, 0x65, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x09, 0x76, 0x61, 0x72,
-	0x69, 0x61, 0x62, 0x6c, 0x65, 0x73, 0x1a, 0xc1, 0x01, 0x0a, 0x08, 0x56, 0x61, 0x72, 0x69, 0x61,
-	0x62, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2e, 0x0a, 0x09, 0x64, 0x61, 0x74, 0x61, 0x5f,
-	0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x62, 0x65, 0x65,
-	0x70, 0x6c, 0x75, 0x67, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x52, 0x08, 0x64,
-	0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x12, 0x21, 0x0a, 0x09, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x18, 0x04,
-	0x20, 0x01, 0x28, 0x01, 0x48, 0x00, 0x52, 0x09, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c,
-	0x64, 0x88, 0x01, 0x01, 0x12, 0x1b, 0x0a, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x18, 0x05,
-	0x20, 0x01, 0x28, 0x0d, 0x48, 0x01, 0x52, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x88, 0x01,
-	0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x42,
-	0x09, 0x0a, 0x07, 0x5f, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x2a, 0xba, 0x01, 0x0a, 0x08, 0x44,
-	0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x49, 0x6e, 0x74, 0x38, 0x10,
-	0x00, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x6e, 0x74, 0x31, 0x36, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05,
-	0x49, 0x6e, 0x74, 0x33, 0x32, 0x10, 0x02, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x6e, 0x74, 0x36, 0x34,
-	0x10, 0x03, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x49, 0x6e, 0x74, 0x38, 0x10, 0x04, 0x12, 0x0a, 0x0a,
-	0x06, 0x55, 0x49, 0x6e, 0x74, 0x31, 0x36, 0x10, 0x05, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x49, 0x6e,
-	0x74, 0x33, 0x32, 0x10, 0x06, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x10,
-	0x07, 0x12, 0x09, 0x0a, 0x05, 0x46, 0x6c, 0x6f, 0x61, 0x74, 0x10, 0x08, 0x12, 0x0a, 0x0a, 0x06,
-	0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x10, 0x09, 0x12, 0x0b, 0x0a, 0x07, 0x42, 0x6f, 0x6f, 0x6c,
-	0x65, 0x61, 0x6e, 0x10, 0x0a, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10,
-	0x0b, 0x12, 0x0b, 0x0a, 0x07, 0x57, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x0c, 0x12, 0x09,
-	0x0a, 0x05, 0x42, 0x79, 0x74, 0x65, 0x73, 0x10, 0x0d, 0x12, 0x0c, 0x0a, 0x08, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x10, 0x0f, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x62, 0x65, 0x65,
-	0x70, 0x6c, 0x75, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6c, 0x75, 0x65, 0x22, 0x9f, 0x03, 0x0a, 0x09, 0x45, 0x64, 0x67, 0x65, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x33, 0x0a, 0x07,
+	0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e,
+	0x62, 0x65, 0x65, 0x70, 0x6c, 0x75, 0x67, 0x2e, 0x45, 0x64, 0x67, 0x65, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x07, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65,
+	0x73, 0x1a, 0xc2, 0x02, 0x0a, 0x06, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x40, 0x0a, 0x09, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x73, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x62, 0x65, 0x65, 0x70, 0x6c, 0x75, 0x67, 0x2e, 0x45, 0x64,
+	0x67, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x56,
+	0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x09, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c,
+	0x65, 0x73, 0x1a, 0xc1, 0x01, 0x0a, 0x08, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x2e, 0x0a, 0x09, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x62, 0x65, 0x65, 0x70, 0x6c, 0x75, 0x67,
+	0x2e, 0x44, 0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x52, 0x08, 0x64, 0x61, 0x74, 0x61, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x21, 0x0a,
+	0x09, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x01,
+	0x48, 0x00, 0x52, 0x09, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x88, 0x01, 0x01,
+	0x12, 0x1b, 0x0a, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0d,
+	0x48, 0x01, 0x52, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a,
+	0x0a, 0x5f, 0x74, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x42, 0x09, 0x0a, 0x07, 0x5f,
+	0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x22, 0x93, 0x03, 0x0a, 0x0b, 0x45, 0x6e, 0x74, 0x69, 0x74,
+	0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x12, 0x32, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x62, 0x65, 0x65, 0x70, 0x6c, 0x75, 0x67, 0x2e, 0x45, 0x6e, 0x74, 0x69, 0x74,
+	0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x52, 0x06, 0x66, 0x69,
+	0x65, 0x6c, 0x64, 0x73, 0x1a, 0xb5, 0x02, 0x0a, 0x05, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x2a, 0x0a, 0x0e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x5f, 0x6d, 0x6f,
+	0x64, 0x75, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x0d, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x88, 0x01, 0x01, 0x12, 0x1e,
+	0x0a, 0x0a, 0x65, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x21,
+	0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x65, 0x6e, 0x74, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x65, 0x6e,
+	0x74, 0x12, 0x4b, 0x0a, 0x0d, 0x73, 0x65, 0x74, 0x5f, 0x66, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x62, 0x65, 0x65, 0x70, 0x6c,
+	0x75, 0x67, 0x2e, 0x45, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x46,
+	0x69, 0x65, 0x6c, 0x64, 0x2e, 0x53, 0x65, 0x74, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x0c, 0x73, 0x65, 0x74, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x1a, 0x49,
+	0x0a, 0x0b, 0x53, 0x65, 0x74, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1a, 0x0a,
+	0x08, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x78, 0x70,
+	0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65,
+	0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x42, 0x11, 0x0a, 0x0f, 0x5f, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2a, 0xba, 0x01, 0x0a,
+	0x08, 0x44, 0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x49, 0x6e, 0x74,
+	0x38, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x6e, 0x74, 0x31, 0x36, 0x10, 0x01, 0x12, 0x09,
+	0x0a, 0x05, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x10, 0x02, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x6e, 0x74,
+	0x36, 0x34, 0x10, 0x03, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x49, 0x6e, 0x74, 0x38, 0x10, 0x04, 0x12,
+	0x0a, 0x0a, 0x06, 0x55, 0x49, 0x6e, 0x74, 0x31, 0x36, 0x10, 0x05, 0x12, 0x0a, 0x0a, 0x06, 0x55,
+	0x49, 0x6e, 0x74, 0x33, 0x32, 0x10, 0x06, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x49, 0x6e, 0x74, 0x36,
+	0x34, 0x10, 0x07, 0x12, 0x09, 0x0a, 0x05, 0x46, 0x6c, 0x6f, 0x61, 0x74, 0x10, 0x08, 0x12, 0x0a,
+	0x0a, 0x06, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x10, 0x09, 0x12, 0x0b, 0x0a, 0x07, 0x42, 0x6f,
+	0x6f, 0x6c, 0x65, 0x61, 0x6e, 0x10, 0x0a, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x10, 0x0b, 0x12, 0x0b, 0x0a, 0x07, 0x57, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x0c,
+	0x12, 0x09, 0x0a, 0x05, 0x42, 0x79, 0x74, 0x65, 0x73, 0x10, 0x0d, 0x12, 0x0c, 0x0a, 0x08, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x10, 0x0f, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x62,
+	0x65, 0x65, 0x70, 0x6c, 0x75, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -777,28 +992,33 @@ func file_beeplug_proto_rawDescGZIP() []byte {
 }
 
 var file_beeplug_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_beeplug_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_beeplug_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_beeplug_proto_goTypes = []interface{}{
-	(DataType)(0),                 // 0: beeplug.DataType
-	(*Payload)(nil),               // 1: beeplug.Payload
-	(*Model)(nil),                 // 2: beeplug.Model
-	(*Payload_Response)(nil),      // 3: beeplug.Payload.Response
-	(*Payload_Metric)(nil),        // 4: beeplug.Payload.Metric
-	(*Model_Device)(nil),          // 5: beeplug.Model.Device
-	(*Model_Device_Variable)(nil), // 6: beeplug.Model.Device.Variable
+	(DataType)(0),                         // 0: beeplug.DataType
+	(*Payload)(nil),                       // 1: beeplug.Payload
+	(*EdgeModel)(nil),                     // 2: beeplug.EdgeModel
+	(*EntityModel)(nil),                   // 3: beeplug.EntityModel
+	(*Payload_Response)(nil),              // 4: beeplug.Payload.Response
+	(*Payload_Metric)(nil),                // 5: beeplug.Payload.Metric
+	(*EdgeModel_Device)(nil),              // 6: beeplug.EdgeModel.Device
+	(*EdgeModel_Device_Variable)(nil),     // 7: beeplug.EdgeModel.Device.Variable
+	(*EntityModel_Field)(nil),             // 8: beeplug.EntityModel.Field
+	(*EntityModel_Field_SetFunction)(nil), // 9: beeplug.EntityModel.Field.SetFunction
 }
 var file_beeplug_proto_depIdxs = []int32{
-	4, // 0: beeplug.Payload.metrics:type_name -> beeplug.Payload.Metric
-	5, // 1: beeplug.Model.devices:type_name -> beeplug.Model.Device
-	0, // 2: beeplug.Payload.Metric.data_type:type_name -> beeplug.DataType
-	3, // 3: beeplug.Payload.Metric.response_value:type_name -> beeplug.Payload.Response
-	6, // 4: beeplug.Model.Device.variables:type_name -> beeplug.Model.Device.Variable
-	0, // 5: beeplug.Model.Device.Variable.data_type:type_name -> beeplug.DataType
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	5, // 0: beeplug.Payload.metrics:type_name -> beeplug.Payload.Metric
+	6, // 1: beeplug.EdgeModel.devices:type_name -> beeplug.EdgeModel.Device
+	8, // 2: beeplug.EntityModel.fields:type_name -> beeplug.EntityModel.Field
+	0, // 3: beeplug.Payload.Metric.data_type:type_name -> beeplug.DataType
+	4, // 4: beeplug.Payload.Metric.response_value:type_name -> beeplug.Payload.Response
+	7, // 5: beeplug.EdgeModel.Device.variables:type_name -> beeplug.EdgeModel.Device.Variable
+	0, // 6: beeplug.EdgeModel.Device.Variable.data_type:type_name -> beeplug.DataType
+	9, // 7: beeplug.EntityModel.Field.set_functions:type_name -> beeplug.EntityModel.Field.SetFunction
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_beeplug_proto_init() }
@@ -820,7 +1040,7 @@ func file_beeplug_proto_init() {
 			}
 		}
 		file_beeplug_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Model); i {
+			switch v := v.(*EdgeModel); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -832,7 +1052,7 @@ func file_beeplug_proto_init() {
 			}
 		}
 		file_beeplug_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Payload_Response); i {
+			switch v := v.(*EntityModel); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -844,7 +1064,7 @@ func file_beeplug_proto_init() {
 			}
 		}
 		file_beeplug_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Payload_Metric); i {
+			switch v := v.(*Payload_Response); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -856,7 +1076,7 @@ func file_beeplug_proto_init() {
 			}
 		}
 		file_beeplug_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Model_Device); i {
+			switch v := v.(*Payload_Metric); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -868,7 +1088,43 @@ func file_beeplug_proto_init() {
 			}
 		}
 		file_beeplug_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Model_Device_Variable); i {
+			switch v := v.(*EdgeModel_Device); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_beeplug_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EdgeModel_Device_Variable); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_beeplug_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EntityModel_Field); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_beeplug_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EntityModel_Field_SetFunction); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -880,7 +1136,7 @@ func file_beeplug_proto_init() {
 			}
 		}
 	}
-	file_beeplug_proto_msgTypes[3].OneofWrappers = []interface{}{
+	file_beeplug_proto_msgTypes[4].OneofWrappers = []interface{}{
 		(*Payload_Metric_Int32Value)(nil),
 		(*Payload_Metric_Int64Value)(nil),
 		(*Payload_Metric_Uint32Value)(nil),
@@ -892,14 +1148,15 @@ func file_beeplug_proto_init() {
 		(*Payload_Metric_BytesValue)(nil),
 		(*Payload_Metric_ResponseValue)(nil),
 	}
-	file_beeplug_proto_msgTypes[5].OneofWrappers = []interface{}{}
+	file_beeplug_proto_msgTypes[6].OneofWrappers = []interface{}{}
+	file_beeplug_proto_msgTypes[7].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_beeplug_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

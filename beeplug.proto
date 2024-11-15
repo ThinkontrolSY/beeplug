@@ -53,7 +53,7 @@ message Payload {
     repeated Metric metrics = 4; // @gotags: yaml:"metrics"
 }
 
-message Model {
+message EdgeModel {
     message Device {
         message Variable {
             string name = 1; // @gotags: yaml:"name"
@@ -68,4 +68,20 @@ message Model {
     }
     string version = 1; // @gotags: yaml:"version"
     repeated Device devices = 2; // @gotags: yaml:"devices"
+}
+
+message EntityModel {
+    message Field {
+        message SetFunction {
+            string variable = 1; // @gotags: yaml:"variable"
+            string expression = 2; // @gotags: yaml:"expression"
+        }
+        string name = 1; // @gotags: yaml:"name"
+        optional string control_module = 2; // @gotags: yaml:"control_module"
+        string expression = 3; // @gotags: yaml:"expression"
+        bool is_transient = 4; // @gotags: yaml:"is_transient"
+        repeated SetFunction set_functions = 5; // @gotags: yaml:"set_functions"
+    }
+    string version = 1; // @gotags: yaml:"version"
+    repeated Field fields = 2; // @gotags: yaml:"fields"
 }
