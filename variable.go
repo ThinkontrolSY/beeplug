@@ -132,7 +132,7 @@ func (f *BeeVariable) GetMetricPayloads() []*Payload_Metric {
 
 func (f *BeeVariable) getMetricPayload(previous bool) *Payload_Metric {
 	metric := &Payload_Metric{
-		Name:     "Variables." + f.Name,
+		Name:     f.Name,
 		DataType: f.DataType,
 		Status:   f.Status,
 	}
