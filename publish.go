@@ -5,7 +5,7 @@ type Publish struct {
 	Payload *Payload
 }
 
-func GetMetricValue(metric *Payload_Metric) interface{} {
+func (metric *Payload_Metric) GetMetricValue() interface{} {
 	switch DataType(metric.GetDataType()) {
 	case DataType_Int8:
 		return int8(metric.GetInt32Value())
