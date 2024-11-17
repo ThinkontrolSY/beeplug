@@ -53,35 +53,28 @@ message Payload {
     repeated Metric metrics = 4; // @gotags: yaml:"metrics"
 }
 
-message EdgeModel {
-    message Device {
-        message Variable {
-            string name = 1; // @gotags: yaml:"name"
-            DataType data_type = 2; // @gotags: yaml:"data_type"
-            string address = 3; // @gotags: yaml:"address"
-            optional double threshold = 4; // @gotags: yaml:"threshold"
-            optional uint32 length = 5; // @gotags: yaml:"length"
-        }
+message EdgeDevice {
+    message Variable {
         string name = 1; // @gotags: yaml:"name"
-        string connection = 2; // @gotags: yaml:"connection"
-        repeated Variable variables = 3; // @gotags: yaml:"variables"
+        DataType data_type = 2; // @gotags: yaml:"data_type"
+        string address = 3; // @gotags: yaml:"address"
+        optional double threshold = 4; // @gotags: yaml:"threshold"
+        optional uint32 length = 5; // @gotags: yaml:"length"
     }
-    string version = 1; // @gotags: yaml:"version"
-    repeated Device devices = 2; // @gotags: yaml:"devices"
+    string name = 1; // @gotags: yaml:"name"
+    string connection = 2; // @gotags: yaml:"connection"
+    repeated Variable variables = 3; // @gotags: yaml:"variables"
 }
 
-message EntityModel {
-    message Field {
-        message SetFunction {
-            string variable = 1; // @gotags: yaml:"variable"
-            string expression = 2; // @gotags: yaml:"expression"
-        }
-        string name = 1; // @gotags: yaml:"name"
-        optional string control_module = 2; // @gotags: yaml:"control_module"
+message EntityField {
+    message SetFunction {
+        string device = 1; // @gotags: yaml:"device"
+        string variable = 2; // @gotags: yaml:"variable"
         string expression = 3; // @gotags: yaml:"expression"
-        bool is_transient = 4; // @gotags: yaml:"is_transient"
-        repeated SetFunction set_functions = 5; // @gotags: yaml:"set_functions"
     }
-    string version = 1; // @gotags: yaml:"version"
-    repeated Field fields = 2; // @gotags: yaml:"fields"
+    string name = 1; // @gotags: yaml:"name"
+    optional string control_module = 2; // @gotags: yaml:"control_module"
+    string expression = 3; // @gotags: yaml:"expression"
+    bool is_transient = 4; // @gotags: yaml:"is_transient"
+    repeated SetFunction set_functions = 5; // @gotags: yaml:"set_functions"
 }
