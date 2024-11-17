@@ -52,17 +52,20 @@ message Payload {
     repeated Metric metrics = 3; // @gotags: yaml:"metrics"
 }
 
-message EdgeDevice {
-    message Variable {
+message EdgeModel {
+    message Device {
+        message Variable {
+            string name = 1; // @gotags: yaml:"name"
+            DataType data_type = 2; // @gotags: yaml:"data_type"
+            string address = 3; // @gotags: yaml:"address"
+            optional double threshold = 4; // @gotags: yaml:"threshold"
+            optional uint32 length = 5; // @gotags: yaml:"length"
+        }
         string name = 1; // @gotags: yaml:"name"
-        DataType data_type = 2; // @gotags: yaml:"data_type"
-        string address = 3; // @gotags: yaml:"address"
-        optional double threshold = 4; // @gotags: yaml:"threshold"
-        optional uint32 length = 5; // @gotags: yaml:"length"
+        string connection = 2; // @gotags: yaml:"connection"
+        repeated Variable variables = 3; // @gotags: yaml:"variables"
     }
-    string name = 1; // @gotags: yaml:"name"
-    string connection = 2; // @gotags: yaml:"connection"
-    repeated Variable variables = 3; // @gotags: yaml:"variables"
+    repeated Device devices = 1; // @gotags: yaml:"devices"
 }
 
 message EntityField {
