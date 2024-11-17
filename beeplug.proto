@@ -48,9 +48,8 @@ message Payload {
     }
 
     uint64 timestamp = 1; // @gotags: yaml:"timestamp"
-    uint64 seq = 2; // @gotags: yaml:"seq"
-    string uuid = 3; // @gotags: yaml:"uuid"
-    repeated Metric metrics = 4; // @gotags: yaml:"metrics"
+    string uuid = 2; // @gotags: yaml:"uuid"
+    repeated Metric metrics = 3; // @gotags: yaml:"metrics"
 }
 
 message EdgeDevice {
