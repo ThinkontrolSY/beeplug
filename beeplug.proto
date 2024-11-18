@@ -4,21 +4,22 @@ option go_package = "./beeplug";
 
 enum DataType {
     // Basic Types
-    Int8            = 0;
-    Int16           = 1;
-    Int32           = 2;
-    Int64           = 3;
-    UInt8           = 4;
-    UInt16          = 5;
-    UInt32          = 6;
-    UInt64          = 7;
-    Float           = 8;
-    Double          = 9;
-    Boolean         = 10;
-    String          = 11;
-    WString         = 12;
-    Bytes           = 13;
-    Response        = 15;
+    Null            = 0;
+    Int8            = 1;
+    Int16           = 2;
+    Int32           = 3;
+    Int64           = 4;
+    UInt8           = 5;
+    UInt16          = 6;
+    UInt32          = 7;
+    UInt64          = 8;
+    Float           = 9;
+    Double          = 11;
+    Boolean         = 12;
+    String          = 13;
+    WString         = 14;
+    Bytes           = 15;
+    Response        = 16;
 }
 
 message Payload {
