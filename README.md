@@ -2,7 +2,7 @@
 
 ### edgeNode -> Cloud
 
-`namespace/message_type/edge__id/`
+`namespace/message_type/edge__id`
 
 - namespace
   - bpBv1.0
