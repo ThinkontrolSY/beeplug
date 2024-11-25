@@ -61,6 +61,7 @@ message EdgeModel {
             string address = 3; // @gotags: yaml:"address"
             optional double threshold = 4; // @gotags: yaml:"threshold"
             optional uint32 length = 5; // @gotags: yaml:"length"
+            optional uint64 interval = 6; // @gotags: yaml:"interval"
         }
         string name = 1; // @gotags: yaml:"name"
         string connection = 2; // @gotags: yaml:"connection"

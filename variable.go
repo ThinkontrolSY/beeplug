@@ -16,6 +16,7 @@ type BeeVariable struct {
 	previous     interface{}
 	previousTime uint64
 	Threshold    *float64
+	Interval     *uint64 // ms
 }
 
 func (f *BeeVariable) Get(previous bool) (interface{}, uint64) {
@@ -58,8 +59,9 @@ func (f *BeeVariable) WriteValue(v interface{}, status string) bool {
 	defer func() {
 		f.Status = status
 	}()
-	exception := f.checkException(v)
 	timeNow := time.Now().UnixNano()
+	exception := f.checkException(v)
+	// 增加判断逻辑，如果超过interval时间，直接更新snapshot
 	if exception {
 		f.snapshot = v
 		f.snapshotTime = uint64(timeNow)
@@ -77,6 +79,7 @@ func (f *BeeVariable) checkException(value interface{}) bool {
 	if f.snapshot == nil {
 		return true
 	}
+	// TODO：重新思考：当没有设置阈值时，并且类型是浮点数时，是否应该直接返回false
 	if f.Threshold == nil {
 		return !(reflect.TypeOf(f.snapshot) == reflect.TypeOf(value) && reflect.DeepEqual(f.snapshot, value))
 	}
