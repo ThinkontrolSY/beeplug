@@ -61,7 +61,6 @@ func (f *BeeVariable) WriteValue(v interface{}, status string) bool {
 	}()
 	timeNow := time.Now().UnixNano()
 	exception := f.checkException(v)
-	// 增加判断逻辑，如果超过interval时间，直接更新snapshot
 	if exception {
 		f.snapshot = v
 		f.snapshotTime = uint64(timeNow)
@@ -79,18 +78,24 @@ func (f *BeeVariable) checkException(value interface{}) bool {
 	if f.snapshot == nil {
 		return true
 	}
-	// TODO：重新思考：当没有设置阈值时，并且类型是浮点数时，是否应该直接返回false
-	if f.Threshold == nil {
+
+	if f.Threshold != nil {
+		newValue := getFloat64(value)
+		oldValue := getFloat64(f.snapshot)
+		if newValue != nil && oldValue != nil {
+			return *newValue < *oldValue-*f.Threshold || *newValue > *oldValue+*f.Threshold
+		}
+	} else if f.DataType != DataType_Float && f.DataType != DataType_Double {
 		return !(reflect.TypeOf(f.snapshot) == reflect.TypeOf(value) && reflect.DeepEqual(f.snapshot, value))
 	}
 
-	newValue := getFloat64(value)
-	oldValue := getFloat64(f.snapshot)
-	if newValue != nil && oldValue != nil {
-		return *newValue < *oldValue-*f.Threshold || *newValue > *oldValue+*f.Threshold
+	if f.Interval == nil {
+		// default interval is 1 hour
+		defaultInterval := uint64(3600000)
+		f.Interval = &defaultInterval
 	}
 
-	return false
+	return time.Now().UnixNano()-int64(f.snapshotTime) > int64(*f.Interval)*int64(1000000)
 }
 
 func getFloat64(value interface{}) *float64 {
