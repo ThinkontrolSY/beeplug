@@ -1,6 +1,7 @@
 package beeplug
 
 import (
+	"fmt"
 	reflect "reflect"
 	sync "sync"
 	"time"
@@ -144,85 +145,246 @@ func (f *BeeVariable) getMetricPayload(previous bool) *Payload_Metric {
 		DataType: f.DataType,
 		Status:   f.Status,
 	}
-	switch f.DataType {
-	case DataType_Boolean:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_BooleanValue{
-			BooleanValue: v.(bool),
-		}
-		metric.Timestamp = t
-	case DataType_Int8:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Int32Value{
-			Int32Value: int32(v.(int8)),
-		}
-		metric.Timestamp = t
-	case DataType_UInt8:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Uint32Value{
-			Uint32Value: uint32(v.(uint8)),
-		}
-		metric.Timestamp = t
-	case DataType_Int16:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Int32Value{
-			Int32Value: int32(v.(int16)),
-		}
-		metric.Timestamp = t
-	case DataType_UInt16:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Uint32Value{
-			Uint32Value: uint32(v.(uint16)),
-		}
-		metric.Timestamp = t
-	case DataType_Int32:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Int32Value{
-			Int32Value: v.(int32),
-		}
-		metric.Timestamp = t
-	case DataType_UInt32:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Uint32Value{
-			Uint32Value: v.(uint32),
-		}
-		metric.Timestamp = t
-	case DataType_Int64:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Int64Value{
-			Int64Value: v.(int64),
-		}
-		metric.Timestamp = t
-	case DataType_UInt64:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_Uint64Value{
-			Uint64Value: v.(uint64),
-		}
-		metric.Timestamp = t
-	case DataType_Float:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_FloatValue{
-			FloatValue: v.(float32),
-		}
-		metric.Timestamp = t
-	case DataType_Double:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_DoubleValue{
-			DoubleValue: v.(float64),
-		}
-		metric.Timestamp = t
-	case DataType_String, DataType_WString:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_StringValue{
-			StringValue: v.(string),
-		}
-		metric.Timestamp = t
-	case DataType_Bytes:
-		v, t := f.Get(previous)
-		metric.Value = &Payload_Metric_BytesValue{
-			BytesValue: v.([]byte),
-		}
-		metric.Timestamp = t
-	}
+	v, t := f.Get(previous)
+	metric.SetValue(v)
+	metric.Timestamp = t
 	return metric
+}
+
+func (metric *Payload_Metric) SetValue(value interface{}) error {
+	switch metric.DataType {
+	case DataType_Boolean:
+		b, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("value: %T is not a boolean", value)
+		}
+		metric.Value = &Payload_Metric_BooleanValue{
+			BooleanValue: b,
+		}
+	case DataType_Int8, DataType_Int16, DataType_Int32:
+		switch v := value.(type) {
+		case int:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case int8:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case int16:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case int32:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: v,
+			}
+		case int64:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case uint:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case uint8:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case uint16:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case uint32:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		case uint64:
+			metric.Value = &Payload_Metric_Int32Value{
+				Int32Value: int32(v),
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to int32", value)
+		}
+	case DataType_UInt8, DataType_UInt16, DataType_UInt32:
+		switch v := value.(type) {
+		case int:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case int8:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case int16:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case int32:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case int64:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case uint:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case uint8:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case uint16:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case uint32:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		case uint64:
+			metric.Value = &Payload_Metric_Uint32Value{
+				Uint32Value: uint32(v),
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to uint32", value)
+		}
+	case DataType_Int64:
+		switch v := value.(type) {
+		case int:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case int8:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case int16:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case int32:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case int64:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case uint:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case uint8:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case uint16:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case uint32:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		case uint64:
+			metric.Value = &Payload_Metric_Int64Value{
+				Int64Value: int64(v),
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to int64", value)
+		}
+	case DataType_UInt64:
+		switch v := value.(type) {
+		case int:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case int8:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case int16:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case int32:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case int64:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case uint:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case uint8:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case uint16:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case uint32:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		case uint64:
+			metric.Value = &Payload_Metric_Uint64Value{
+				Uint64Value: uint64(v),
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to uint64", value)
+		}
+	case DataType_Float:
+		switch v := value.(type) {
+		case float32:
+			metric.Value = &Payload_Metric_FloatValue{
+				FloatValue: v,
+			}
+		case float64:
+			metric.Value = &Payload_Metric_FloatValue{
+				FloatValue: float32(v),
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to float32", value)
+		}
+	case DataType_Double:
+		switch v := value.(type) {
+		case float32:
+			metric.Value = &Payload_Metric_DoubleValue{
+				DoubleValue: float64(v),
+			}
+		case float64:
+			metric.Value = &Payload_Metric_DoubleValue{
+				DoubleValue: v,
+			}
+		default:
+			return fmt.Errorf("value: %T cannot be converted to float64", value)
+		}
+	case DataType_String, DataType_WString:
+		s, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("value: %T is not a string", value)
+		}
+		metric.Value = &Payload_Metric_StringValue{
+			StringValue: s,
+		}
+	case DataType_Bytes:
+		b, ok := value.([]byte)
+		if !ok {
+			return fmt.Errorf("value: %T is not a byte array", value)
+		}
+		metric.Value = &Payload_Metric_BytesValue{
+			BytesValue: b,
+		}
+	default:
+		return fmt.Errorf("unsupported data type: %v", metric.DataType)
+	}
+	return nil
 }
